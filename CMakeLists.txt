@@ -9,7 +9,7 @@ set( COMPILE_DEFINITIONS )
 
 if(UNIX)
 
-    add_executable(MichouChessGuiwxW main.cpp )
+    add_executable(MichouChessGuiwxW main.cpp globals.h MainGui.cpp MainGui.h MichouApp.cpp MichouApp.h)
     target_include_directories( MichouChessGuiwxW
             PRIVATE "/usr/local/include/wx-3.2" )
 
@@ -34,7 +34,7 @@ if(UNIX)
             PUBLIC -lwx_baseu-3.2)
 
 else()
-    add_executable(MichouChessGuiwxW main.cpp  globals.h MainGui.cpp MainGui.h)#MichouApp.cpp MichouApp.h MainFrame.cpp MainFrame.h)
+    add_executable(MichouChessGuiwxW main.cpp  globals.h MainGui.cpp MainGui.h MichouApp.cpp MichouApp.h)#MichouApp.cpp MichouApp.h MainFrame.cpp MainFrame.h)
     set(wxWidgets_DIR "C:/vcpkg/installed/x64-windows/share/wxwidgets")
     set(CMAKE_PREFIX_PATH $(CMAKE_PREFIX_PATH);C:/vcpkg/installed/x64-windows/share/unofficial-nanosvg)
     #add_compile_options(--with-osx_cocoa --with-macosx-version-min=10.7 --with-macosx-sdk=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk --prefix="$(pwd)")
