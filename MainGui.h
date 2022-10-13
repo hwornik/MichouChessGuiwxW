@@ -18,13 +18,31 @@
 class MainGui : public wxFrame
     {
     public:
-    MainGui(const wxString& title, const wxPoint& pos, const wxSize& size);
+        MainGui(const wxString& title, const wxPoint& pos, const wxSize& size);
         void OnHello(wxCommandEvent& event);
         void OnExit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
+        void OnBrett(wxCommandEvent& event);
+        void OnDataB(wxCommandEvent& event);
+
+
         wxDECLARE_EVENT_TABLE();
 
+    void OnOnline(wxCommandEvent& event);
 
+    void OnHelp(wxCommandEvent& event);
+
+    void OnRemi(wxCommandEvent &);
+
+    void OnGiveUP(wxCommandEvent &);
+
+    void OnRestart(wxCommandEvent &);
+
+    void OnSettings(wxCommandEvent &);
+
+    void OnAnalyze(wxCommandEvent &);
+
+    void OnStop(wxCommandEvent &);
 };
 
 

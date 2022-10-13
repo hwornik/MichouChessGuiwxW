@@ -6,7 +6,7 @@
 
 bool MichouApp::OnInit()
 {
-    MainGui *frame = new MainGui( "Hello World", wxPoint(50, 50), wxSize(450, 340) );
+    MainGui *frame = new MainGui( "Michou Chess Gui", wxPoint(50, 50), wxSize(450, 340) );
     frame->Show( true );
     return true;
 }

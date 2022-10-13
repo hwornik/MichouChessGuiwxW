@@ -8,25 +8,52 @@
 wxBEGIN_EVENT_TABLE(MainGui, wxFrame)
                 EVT_MENU(ID_Hello,   MainGui::OnHello)
                 EVT_MENU(wxID_EXIT,  MainGui::OnExit)
-                EVT_MENU(wxID_ABOUT, MainGui::OnAbout)
+                EVT_MENU(ID_Game, MainGui::OnAbout)
+                EVT_MENU(ID_Brett,  MainGui::OnBrett)
+                EVT_MENU(ID_DataB,  MainGui::OnDataB)
+                EVT_MENU(ID_Online,  MainGui::OnOnline)
+                EVT_MENU(wxID_HELP,  MainGui::OnHelp)
+                EVT_MENU(ID_Remi,  MainGui::OnRemi)
+                EVT_MENU(ID_GiveUP,  MainGui::OnGiveUP)
+                EVT_MENU(ID_Restart,  MainGui::OnRestart)
+                EVT_MENU(wxID_SETUP,  MainGui::OnSettings)
+                EVT_MENU(ID_Analyze,  MainGui::OnAnalyze)
+                EVT_MENU(ID_Stop,  MainGui::OnStop)
 wxEND_EVENT_TABLE()
 
 MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
         : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
-    wxMenu *menuFile = new wxMenu;
-    menuFile->Append(ID_Hello, "&Hello...\tCtrl-H",
-                     "Help string shown in status bar for this menu item");
-    menuFile->AppendSeparator();
-    menuFile->Append(wxID_EXIT);
+    wxMenu *menuEngine = new wxMenu;
+    menuEngine->Append(ID_Hello, "&Load\tCtrl-L");
+    menuEngine->Append(ID_Analyze, "&Analyze\tCtrl-A");
+    menuEngine->Append(ID_Stop, "&Stop\tCtrl-S");
+    menuEngine->AppendSeparator();
+    menuEngine->Append(wxID_EXIT);
+    wxMenu *menuGame = new wxMenu;
+    menuGame->Append(ID_Game,"&New");
+    menuGame->Append(ID_Remi,"&Remi");
+    menuGame->Append(ID_GiveUP,"&GiveUp");
+    menuGame->Append(ID_Restart,"&Restart");
+    menuGame->Append(wxID_SETUP,"&Settings");
+    wxMenu *menuBrett = new wxMenu;
+    //menuBrett->Append( ID_Brett, "&Board");
+    wxMenu *menuDataB = new wxMenu;
+    //menuDataB->Append( ID_DataB, "&Database");
+    wxMenu *menuOnline = new wxMenu;
+    //menuOnline->Append( ID_Online, "&Online");
     wxMenu *menuHelp = new wxMenu;
-    menuHelp->Append(wxID_ABOUT);
+    //menuHelp->Append(wxID_HELP);
     wxMenuBar *menuBar = new wxMenuBar;
-    menuBar->Append( menuFile, "&Engine" );
-    menuBar->Append( menuHelp, "&Game" );
+    menuBar->Append( menuGame, "&Game" );
+    menuBar->Append( menuEngine, "&Engine" );
+    menuBar->Append( menuBrett, "&Board" );
+    menuBar->Append( menuDataB, "&Database" );
+    menuBar->Append( menuOnline, "&Online" );
+    menuBar->Append( menuHelp, "&Help" );
     SetMenuBar( menuBar );
-    CreateStatusBar();
-    SetStatusText( "Welcome to wxWidgets!" );
+    /*CreateStatusBar();
+    SetStatusText( "Welcome to wxWidgets!" );*/
 }
 void MainGui::OnExit(wxCommandEvent& event)
 {
@@ -40,4 +67,44 @@ void MainGui::OnAbout(wxCommandEvent& event)
 void MainGui::OnHello(wxCommandEvent& event)
 {
     wxLogMessage("Hello world from wxWidgets!");
+}
+
+void MainGui::OnBrett(wxCommandEvent& event) {
+
+}
+
+void MainGui::OnDataB(wxCommandEvent& event) {
+
+}
+
+void MainGui::OnOnline(wxCommandEvent& event) {
+
+}
+
+void MainGui::OnHelp(wxCommandEvent& event) {
+
+}
+
+void MainGui::OnRemi(wxCommandEvent &) {
+
+}
+
+void MainGui::OnRestart(wxCommandEvent &) {
+
+}
+
+void MainGui::OnGiveUP(wxCommandEvent &) {
+
+}
+
+void MainGui::OnSettings(wxCommandEvent &) {
+
+}
+
+void MainGui::OnAnalyze(wxCommandEvent &) {
+
+}
+
+void MainGui::OnStop(wxCommandEvent &) {
+
 }
