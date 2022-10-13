@@ -19,7 +19,6 @@ class MainGui : public wxFrame
     {
     public:
     MainGui(const wxString& title, const wxPoint& pos, const wxSize& size);
-    private:
         void OnHello(wxCommandEvent& event);
         void OnExit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
@@ -27,6 +26,7 @@ class MainGui : public wxFrame
 
 
 };
+
 
 
 #endif //MICHOUCHESSGUIWXW_MAINGUI_H

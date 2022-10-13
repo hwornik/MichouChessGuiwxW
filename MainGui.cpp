@@ -5,6 +5,12 @@
 #include "MainGui.h"
 
 
+wxBEGIN_EVENT_TABLE(MainGui, wxFrame)
+                EVT_MENU(ID_Hello,   MainGui::OnHello)
+                EVT_MENU(wxID_EXIT,  MainGui::OnExit)
+                EVT_MENU(wxID_ABOUT, MainGui::OnAbout)
+wxEND_EVENT_TABLE()
+
 MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
         : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
