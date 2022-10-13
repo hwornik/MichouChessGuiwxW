@@ -16,7 +16,7 @@ wxBEGIN_EVENT_TABLE(MainGui, wxFrame)
                 EVT_MENU(ID_Remi,  MainGui::OnRemi)
                 EVT_MENU(ID_GiveUP,  MainGui::OnGiveUP)
                 EVT_MENU(ID_Restart,  MainGui::OnRestart)
-                EVT_MENU(wxID_SETUP,  MainGui::OnSettings)
+                EVT_MENU(wxID_PREFERENCES,  MainGui::OnSettings)
                 EVT_MENU(ID_Analyze,  MainGui::OnAnalyze)
                 EVT_MENU(ID_Stop,  MainGui::OnStop)
 wxEND_EVENT_TABLE()
@@ -28,14 +28,15 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     menuEngine->Append(ID_Hello, "&Load\tCtrl-L");
     menuEngine->Append(ID_Analyze, "&Analyze\tCtrl-A");
     menuEngine->Append(ID_Stop, "&Stop\tCtrl-S");
-    menuEngine->AppendSeparator();
-    menuEngine->Append(wxID_EXIT);
+
     wxMenu *menuGame = new wxMenu;
     menuGame->Append(ID_Game,"&New");
     menuGame->Append(ID_Remi,"&Remi");
     menuGame->Append(ID_GiveUP,"&GiveUp");
     menuGame->Append(ID_Restart,"&Restart");
-    menuGame->Append(wxID_SETUP,"&Settings");
+    menuGame->Append(wxID_PREFERENCES,"&Settings");
+    menuGame->AppendSeparator();
+    menuGame->Append(wxID_EXIT);
     wxMenu *menuBrett = new wxMenu;
     //menuBrett->Append( ID_Brett, "&Board");
     wxMenu *menuDataB = new wxMenu;
