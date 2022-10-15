@@ -12,13 +12,20 @@ wxBEGIN_EVENT_TABLE(MainGui, wxFrame)
                 EVT_MENU(ID_Brett,  MainGui::OnBrett)
                 EVT_MENU(ID_DataB,  MainGui::OnDataB)
                 EVT_MENU(ID_Online,  MainGui::OnOnline)
-                EVT_MENU(wxID_HELP,  MainGui::OnHelp)
+                EVT_MENU(ID_Hilfe,  MainGui::OnHelp)
                 EVT_MENU(ID_Remi,  MainGui::OnRemi)
                 EVT_MENU(ID_GiveUP,  MainGui::OnGiveUP)
                 EVT_MENU(ID_Restart,  MainGui::OnRestart)
                 EVT_MENU(wxID_PREFERENCES,  MainGui::OnSettings)
                 EVT_MENU(ID_Analyze,  MainGui::OnAnalyze)
                 EVT_MENU(ID_Stop,  MainGui::OnStop)
+                EVT_MENU(ID_Nstart,  MainGui::OnNstart)
+                EVT_MENU(ID_Rotate,  MainGui::OnRotate)
+                EVT_MENU(ID_NewW,  MainGui::OnNewW)
+                EVT_MENU(ID_NewB,  MainGui::OnNewB)
+                EVT_MENU(ID_DBStellg,  MainGui::OnDBStellg)
+                EVT_MENU(ID_Retrieve,  MainGui::OnRetrieve)
+                EVT_MENU(ID_Send,  MainGui::OnSend)
 wxEND_EVENT_TABLE()
 
 MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
@@ -34,17 +41,23 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     menuGame->Append(ID_Remi,"&Remi");
     menuGame->Append(ID_GiveUP,"&GiveUp");
     menuGame->Append(ID_Restart,"&Restart");
+    menuGame->Append(ID_Nstart,"&Start");
     menuGame->Append(wxID_PREFERENCES,"&Settings");
     menuGame->AppendSeparator();
     menuGame->Append(wxID_EXIT);
     wxMenu *menuBrett = new wxMenu;
-    //menuBrett->Append( ID_Brett, "&Board");
+    menuBrett->Append( ID_Rotate ,"&Rotate");
+    menuBrett->Append( ID_Set_Up ,"&Set Up");
+    menuBrett->Append( ID_NewW ,"&New White");
+    menuBrett->Append( ID_NewB ,"&New Black");
     wxMenu *menuDataB = new wxMenu;
-    //menuDataB->Append( ID_DataB, "&Database");
+    menuDataB->Append( ID_DataB, "&Open");
+    menuDataB->Append( ID_DBStellg, "&Stellung");
     wxMenu *menuOnline = new wxMenu;
-    //menuOnline->Append( ID_Online, "&Online");
+    menuOnline->Append( ID_Retrieve, "&Retrieve");
+    menuOnline->Append( ID_Send, "&Send");
     wxMenu *menuHelp = new wxMenu;
-    //menuHelp->Append(wxID_HELP);
+    menuHelp->Append(ID_Hilfe,"&Online Help");
     wxMenuBar *menuBar = new wxMenuBar;
     menuBar->Append( menuGame, "&Game" );
     menuBar->Append( menuEngine, "&Engine" );
@@ -53,6 +66,7 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     menuBar->Append( menuOnline, "&Online" );
     menuBar->Append( menuHelp, "&Help" );
     SetMenuBar( menuBar );
+    //menuHelp->Bind(wxEVT_MENU,&MainGui::OnHelp, this, ID_Hilfe);
     /*CreateStatusBar();
     SetStatusText( "Welcome to wxWidgets!" );*/
 }
@@ -83,7 +97,7 @@ void MainGui::OnOnline(wxCommandEvent& event) {
 }
 
 void MainGui::OnHelp(wxCommandEvent& event) {
-
+    wxLaunchDefaultBrowser	("https://www.wornik.work",0    );
 }
 
 void MainGui::OnRemi(wxCommandEvent &) {
@@ -107,5 +121,33 @@ void MainGui::OnAnalyze(wxCommandEvent &) {
 }
 
 void MainGui::OnStop(wxCommandEvent &) {
+
+}
+
+void MainGui::OnNstart(wxCommandEvent &) {
+
+}
+
+void MainGui::OnNewW(wxCommandEvent &) {
+
+}
+
+void MainGui::OnRotate(wxCommandEvent &) {
+
+}
+
+void MainGui::OnNewB(wxCommandEvent &) {
+
+}
+
+void MainGui::OnDBStellg(wxCommandEvent &) {
+
+}
+
+void MainGui::OnSend(wxCommandEvent &) {
+
+}
+
+void MainGui::OnRetrieve(wxCommandEvent &) {
 
 }

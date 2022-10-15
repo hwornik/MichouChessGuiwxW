@@ -13,6 +13,7 @@
 #include <wx/frame.h>
 #include "MainGui.h"
 
+
 class MichouApp : public wxApp
 {
 public:
