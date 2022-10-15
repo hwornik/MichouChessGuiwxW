@@ -6,41 +6,26 @@ set(CMAKE_CXX_STANDARD 14)
 
 set(CMAKE_CXX_STANDARD 17)
 set( COMPILE_DEFINITIONS )
-add_executable(MichouChessGuiwxW main.cpp  globals.h MainGui.cpp MainGui.h MichouApp.cpp MichouApp.h Labguage.cpp Labguage.h)
+
 if(UNIX)
 
-    target_include_directories( MichouChessGuiwxW
-            PRIVATE "/usr/local/include/wx-3.2" )
     if(APPLE)
-        target_compile_options(MichouChessGuiwxW
-            BEFORE
-            PUBLIC -I/usr/local/lib/wx/include/osx_cocoa-unicode-3.2
-            PUBLIC  -I/usr/local/include/wx-3.2
-            PUBLIC -D_FILE_OFFSET_BITS=64
-            PUBLIC -DWXUSINGDLL
-            PUBLIC -D__WXMAC__
-            PUBLIC -D__WXOSX__
-            PUBLIC -D__WXOSX_COCOA__)
+        find_package(wxWidgets 3.1.4 REQUIRED)
+        include(${wxWidgets_USE_FILE})
+        set(SOURCES main.cpp  globals.h MainGui.cpp MainGui.h MichouApp.cpp MichouApp.h Labguage.cpp Labguage.h)
+                # Options
+        set(CMAKE_CXX_STANDARD 17)
+        set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-
-target_link_options(MichouChessGuiwxW
-            BEFORE
-            PUBLIC -L/usr/local/lib
-            #PUBLIC -framework IOKit
-            #PUBLIC -framework Carbon
-            #PUBLIC -framework Cocoa
-            #PUBLIC -framework QuartzCore
-            #PUBLIC -framework AudioToolbox
-            #PUBLIC -framework System
-            PUBLIC -framework OpenGL
-            PUBLIC -lwx_osx_cocoau_xrc-3.2
-            PUBLIC -lwx_osx_cocoau_html-3.2
-            PUBLIC -lwx_osx_cocoau_qa-3.2
-            PUBLIC -lwx_osx_cocoau_core-3.2
-            PUBLIC -lwx_baseu_xml-3.2
-            PUBLIC -lwx_baseu_net-3.2
-            PUBLIC -lwx_baseu-3.2)
-    else()
+        # Target
+        add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${SOURCES})
+        target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
+        set_target_properties(${PROJECT_NAME} PROPERTIES FOLDER "HelloWorlds")
+        endif(APPLE)
+    eseif()
+        add_executable(MichouChessGuiwxW main.cpp  globals.h MainGui.cpp MainGui.h MichouApp.cpp MichouApp.h Labguage.cpp Labguage.h)
+        target_include_directories( MichouChessGuiwxW
+                PRIVATE "/usr/local/include/wx-3.2" )
         target_compile_options(MichouChessGuiwxW
                 BEFORE
                 PUBLIC -I/usr/local/lib64/wx/include/gtk3-unicode-3.2
@@ -61,8 +46,8 @@ target_link_options(MichouChessGuiwxW
                 PUBLIC -lwx_baseu_net-3.2
                 PUBLIC -lwx_baseu-3.2)
     endif(APPLE)
-
 else()
+    add_executable(MichouChessGuiwxW main.cpp  globals.h MainGui.cpp MainGui.h MichouApp.cpp MichouApp.h Labguage.cpp Labguage.h)
 
     set(wxWidgets_DIR "C:/vcpkg/installed/x64-windows/share/wxwidgets")
     set(CMAKE_PREFIX_PATH $(CMAKE_PREFIX_PATH);C:/vcpkg/installed/x64-windows/share/unofficial-nanosvg)
