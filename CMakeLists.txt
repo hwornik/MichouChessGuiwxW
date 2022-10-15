@@ -21,8 +21,8 @@ if(UNIX)
         add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${SOURCES})
         target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
         set_target_properties(${PROJECT_NAME} PROPERTIES FOLDER "HelloWorlds")
-        endif(APPLE)
-    eseif()
+    endif(APPLE)
+    if(LINUX)
         add_executable(MichouChessGuiwxW main.cpp  globals.h MainGui.cpp MainGui.h MichouApp.cpp MichouApp.h Labguage.cpp Labguage.h)
         target_include_directories( MichouChessGuiwxW
                 PRIVATE "/usr/local/include/wx-3.2" )
@@ -45,7 +45,7 @@ if(UNIX)
                 PUBLIC -lwx_baseu_xml-3.2
                 PUBLIC -lwx_baseu_net-3.2
                 PUBLIC -lwx_baseu-3.2)
-    endif(APPLE)
+    endif(LINUX)
 else()
     add_executable(MichouChessGuiwxW main.cpp  globals.h MainGui.cpp MainGui.h MichouApp.cpp MichouApp.h Labguage.cpp Labguage.h)
 

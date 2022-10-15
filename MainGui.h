@@ -12,7 +12,8 @@
 #include <wx/frame.h>
 #include <wx/menu.h>
 #include <wx/event.h>
-
+#include <wx/artprov.h>
+#include <map>
 #include "globals.h"
 
 class MainGui : public wxFrame
