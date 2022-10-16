@@ -3,7 +3,7 @@
 //
 
 #include "MainGui.h"
-#include "Schachbrett.h"
+
 
 
 wxBEGIN_EVENT_TABLE(MainGui, wxFrame)
@@ -74,18 +74,19 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     this->CreateStatusBar();
     // Panel Setup
     textctrl = new wxTextCtrl(this, TEXT_Main, "Hi!");
-    wxSize screen = this->GetSize();
-    textctrl->SetSize(screen.GetWidth()-10,50);
+   // wxSize screen = this->GetSize();
+   /* textctrl->SetSize(screen.GetWidth()-10,50);
     wxPoint textpos;
     textpos.x=5;
     textpos.y=screen.GetHeight()-110;
-    textctrl->SetPosition(textpos);
-    Schachbrett *schbr= new Schachbrett(this,wxT("/home/hans/CLionProjects/MichouChessGuiwxW/SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
-    wxPoint brettpos;
+    textctrl->SetPosition(textpos);*/
+    schbr= new Schachbrett(this,wxT("/home/hans/CLionProjects/MichouChessGuiwxW/SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
+    /*wxPoint brettpos;
     brettpos.x=20;
-    brettpos.y=20;
-    schbr->SetSize(screen.GetHeight()-150,screen.GetHeight()-150);
-    schbr->SetPosition(brettpos);
+    brettpos.y=20;*/
+    //schbr->SetSize(screen.GetHeight()-150,screen.GetHeight()-150);
+    //schbr->SetPosition(brettpos);
+    Bind(wxEVT_SIZE , &MainGui::OnSize, this, wxID_ANY);
 }
 void MainGui::OnExit(wxCommandEvent& event)
 {
@@ -167,4 +168,18 @@ void MainGui::OnSend(wxCommandEvent &) {
 
 void MainGui::OnRetrieve(wxCommandEvent &) {
 
+}
+
+void MainGui::OnSize(wxSizeEvent& event) {
+    wxSize screen = this->GetClientSize();
+    textctrl->SetSize(screen.GetWidth()-10,50);
+    wxPoint textpos;
+    textpos.x=5;
+    textpos.y=screen.GetHeight()-55;
+    textctrl->SetPosition(textpos);
+    wxPoint brettpos;
+    brettpos.x=20;
+    brettpos.y=20;
+    schbr->SetSize(screen.GetHeight()-100,screen.GetHeight()-100);
+    schbr->SetPosition(brettpos);
 }

@@ -15,6 +15,7 @@
 #include <wx/artprov.h>
 #include <map>
 
+#include "Schachbrett.h"
 
 enum
 {
@@ -44,6 +45,8 @@ class MainGui : public wxFrame
     {
     public:
         MainGui(const wxString& title, const wxPoint& pos, const wxSize& size);
+    private:
+        Schachbrett *schbr;
         void OnHello(wxCommandEvent& event);
         void OnExit(wxCommandEvent& event);
         void OnAbout(wxCommandEvent& event);
@@ -83,6 +86,7 @@ class MainGui : public wxFrame
 
     void OnSend(wxCommandEvent &);
 
+    void OnSize(wxSizeEvent& event);
     wxTextCtrl *textctrl;
 };
 
