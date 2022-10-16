@@ -3,6 +3,7 @@
 //
 
 #include "MainGui.h"
+#include "Schachbrett.h"
 
 
 wxBEGIN_EVENT_TABLE(MainGui, wxFrame)
@@ -26,13 +27,14 @@ wxBEGIN_EVENT_TABLE(MainGui, wxFrame)
                 EVT_MENU(ID_DBStellg,  MainGui::OnDBStellg)
                 EVT_MENU(ID_Retrieve,  MainGui::OnRetrieve)
                 EVT_MENU(ID_Send,  MainGui::OnSend)
+                EVT_MENU(wxID_ABOUT,  MainGui::OnAbout)
 wxEND_EVENT_TABLE()
 
 MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
         : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
     wxMenu *menuEngine = new wxMenu;
-    menuEngine->Append(ID_Hello, "&Load\tCtrl-L");
+    menuEngine->Append(ID_Hello, "&Load\tCtrl-L",  "Help string shown in status bar for this menu item");
     menuEngine->Append(ID_Analyze, "&Analyze\tCtrl-A");
     menuEngine->Append(ID_Stop, "&Stop\tCtrl-S");
 
@@ -60,6 +62,7 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     menuOnline->Append( ID_Send, "&Send");
     wxMenu *menuHelp = new wxMenu;
     menuHelp->Append(ID_Hilfe,"&Online Help");
+    menuHelp->Append(wxID_ABOUT,"&About");
     wxMenuBar *menuBar = new wxMenuBar;
     menuBar->Append( menuGame, "&Game" );
     menuBar->Append( menuEngine, "&Engine" );
@@ -68,24 +71,21 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     menuBar->Append( menuOnline, "&Online" );
     menuBar->Append( menuHelp, "&Help" );
     SetMenuBar( menuBar );
-    wxBoxSizer *vbox = new wxBoxSizer(wxVERTICAL);
-    wxBoxSizer *vboxv = new wxBoxSizer(wxVERTICAL);
-    wxBoxSizer *hbox = new wxBoxSizer(wxHORIZONTAL);
-    wxPanel *midPan = new wxPanel(this, wxID_ANY);
-    wxPanel *bottPan = new wxPanel(this, wxID_ANY);
-    this->SetSizer(vboxv);
-    wxSize bottsize;
-    vboxv->Add(midPan, 1, wxEXPAND | wxALL, 2);
-    vboxv->Add(bottPan, 1, wxEXPAND | wxALL, 2);
-    bottsize=this->GetSize();
-    bottsize.SetHeight(100);
-    bottsize.SetWidth(bottsize.GetWidth()-2);
-    bottPan->SetMaxSize(bottsize);
-    bottsize.SetWidth(bottsize.GetWidth()-2);
-    textctrl = new wxTextCtrl(bottPan, TEXT_Main, "Hi!", wxDefaultPosition, bottsize,
-                              wxTE_MULTILINE | wxTE_RICH , wxDefaultValidator, wxTextCtrlNameStr);
-    //textctrl->SetMinSize(bottPan->GetSize());
-    //hbox->Add(textctrl, 1, wxEXPAND | TEXT_Main , 20);
+    this->CreateStatusBar();
+    // Panel Setup
+    textctrl = new wxTextCtrl(this, TEXT_Main, "Hi!");
+    wxSize screen = this->GetSize();
+    textctrl->SetSize(screen.GetWidth()-10,50);
+    wxPoint textpos;
+    textpos.x=5;
+    textpos.y=screen.GetHeight()-110;
+    textctrl->SetPosition(textpos);
+    Schachbrett *schbr= new Schachbrett(this,wxT("/home/hans/CLionProjects/MichouChessGuiwxW/SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
+    wxPoint brettpos;
+    brettpos.x=20;
+    brettpos.y=20;
+    schbr->SetSize(screen.GetHeight()-150,screen.GetHeight()-150);
+    schbr->SetPosition(brettpos);
 }
 void MainGui::OnExit(wxCommandEvent& event)
 {
