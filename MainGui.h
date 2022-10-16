@@ -36,7 +36,8 @@ enum
     ID_NewB=16,
     ID_DBStellg=17,
     ID_Retrieve=18,
-    ID_Send=19
+    ID_Send=19,
+    TEXT_Main=20
 };
 
 class MainGui : public wxFrame
@@ -81,6 +82,8 @@ class MainGui : public wxFrame
     void OnRetrieve(wxCommandEvent &);
 
     void OnSend(wxCommandEvent &);
+
+    wxTextCtrl *textctrl;
 };
 
 

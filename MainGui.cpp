@@ -38,10 +38,12 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
 
     wxMenu *menuGame = new wxMenu;
     menuGame->Append(ID_Game,"&New");
-    menuGame->Append(ID_Remi,"&Remi");
-    menuGame->Append(ID_GiveUP,"&GiveUp");
     menuGame->Append(ID_Restart,"&Restart");
     menuGame->Append(ID_Nstart,"&Start");
+    menuGame->AppendSeparator();
+    menuGame->Append(ID_Remi,"&Remi");
+    menuGame->Append(ID_GiveUP,"&GiveUp");
+    menuGame->AppendSeparator();
     menuGame->Append(wxID_PREFERENCES,"&Settings");
     menuGame->AppendSeparator();
     menuGame->Append(wxID_EXIT);
@@ -66,9 +68,24 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     menuBar->Append( menuOnline, "&Online" );
     menuBar->Append( menuHelp, "&Help" );
     SetMenuBar( menuBar );
-    //menuHelp->Bind(wxEVT_MENU,&MainGui::OnHelp, this, ID_Hilfe);
-    /*CreateStatusBar();
-    SetStatusText( "Welcome to wxWidgets!" );*/
+    wxBoxSizer *vbox = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer *vboxv = new wxBoxSizer(wxVERTICAL);
+    wxBoxSizer *hbox = new wxBoxSizer(wxHORIZONTAL);
+    wxPanel *midPan = new wxPanel(this, wxID_ANY);
+    wxPanel *bottPan = new wxPanel(this, wxID_ANY);
+    this->SetSizer(vboxv);
+    wxSize bottsize;
+    vboxv->Add(midPan, 1, wxEXPAND | wxALL, 2);
+    vboxv->Add(bottPan, 1, wxEXPAND | wxALL, 2);
+    bottsize=this->GetSize();
+    bottsize.SetHeight(100);
+    bottsize.SetWidth(bottsize.GetWidth()-2);
+    bottPan->SetMaxSize(bottsize);
+    bottsize.SetWidth(bottsize.GetWidth()-2);
+    textctrl = new wxTextCtrl(bottPan, TEXT_Main, "Hi!", wxDefaultPosition, bottsize,
+                              wxTE_MULTILINE | wxTE_RICH , wxDefaultValidator, wxTextCtrlNameStr);
+    //textctrl->SetMinSize(bottPan->GetSize());
+    //hbox->Add(textctrl, 1, wxEXPAND | TEXT_Main , 20);
 }
 void MainGui::OnExit(wxCommandEvent& event)
 {
@@ -97,7 +114,7 @@ void MainGui::OnOnline(wxCommandEvent& event) {
 }
 
 void MainGui::OnHelp(wxCommandEvent& event) {
-    wxLaunchDefaultBrowser	("https://www.wornik.work",0    );
+    wxLaunchDefaultBrowser("https://www.wornik.work",0    );
 }
 
 void MainGui::OnRemi(wxCommandEvent &) {
