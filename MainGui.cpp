@@ -36,7 +36,7 @@ wxEND_EVENT_TABLE()
 MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
         : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
-#if !UNIX
+#if TARGET_OS_WINDOWS
     this->SetBackgroundColour(GetSysColor(4));
 #endif
     wxMenu *menuEngine = new wxMenu;
@@ -82,6 +82,7 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     this->CreateStatusBar();
     // Panel Setup
     textctrl = new wxTextCtrl(this, TEXT_Main, "Hi!");
+    textctrl->SetEditable(false);
     schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
     Bind(wxEVT_SIZE , &MainGui::OnSize, this, wxID_ANY);
 }
