@@ -28,64 +28,59 @@ wxBEGIN_EVENT_TABLE(MainGui, wxFrame)
                 EVT_MENU(ID_Retrieve,  MainGui::OnRetrieve)
                 EVT_MENU(ID_Send,  MainGui::OnSend)
                 EVT_MENU(wxID_ABOUT,  MainGui::OnAbout)
+                EVT_MENU(ID_ESet,  MainGui::OnEset)
+                EVT_MENU(ID_Friends,  MainGui::OnFriends)
+                EVT_MENU(ID_Hide,  MainGui::OnHide)
 wxEND_EVENT_TABLE()
 
 MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
         : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
+    this->SetBackgroundColour(this->GetBackgroundColour());
     wxMenu *menuEngine = new wxMenu;
-    menuEngine->Append(ID_Hello, "&Load\tCtrl-L",  "Help string shown in status bar for this menu item");
-    menuEngine->Append(ID_Analyze, "&Analyze\tCtrl-A");
-    menuEngine->Append(ID_Stop, "&Stop\tCtrl-S");
+    menuEngine->Append(ID_Hello, lang.getUMenuEload(),  lang.getUMenuEloadHelp());
+    menuEngine->Append(ID_Analyze, lang.getUMenuEAnalyze(),lang.getUMenuEAnalyzeHelp());
+    menuEngine->Append(ID_Stop, lang.getUMenuEStop(),lang.getUMenuEStopHelp());
+    menuEngine->Append(ID_ESet, lang.getUMenuESett(),lang.getUMenuESettHelp());
 
     wxMenu *menuGame = new wxMenu;
-    menuGame->Append(ID_Game,"&New");
-    menuGame->Append(ID_Restart,"&Restart");
-    menuGame->Append(ID_Nstart,"&Start");
+    menuGame->Append(ID_Game,lang.getUMenuGNew(),lang.getUMenuGNewHelp());
+    menuGame->Append(ID_Restart,lang.getUMenuGRestart(),lang.getUMenuGRestartHelp());
+    menuGame->Append(ID_Nstart,lang.getUMenuGStart(), lang.getUMenuGStartHelp());
     menuGame->AppendSeparator();
-    menuGame->Append(ID_Remi,"&Remi");
-    menuGame->Append(ID_GiveUP,"&GiveUp");
+    menuGame->Append(ID_Remi,lang.getUMenuGRemi(),lang.getUMenuGRemiHelp());
+    menuGame->Append(ID_GiveUP,lang.getUMenuGGiveup(),lang.getUMenuGGiveupHelp());
     menuGame->AppendSeparator();
-    menuGame->Append(wxID_PREFERENCES,"&Settings");
+    menuGame->Append(wxID_PREFERENCES,lang.getUMenuGSettings(),lang.getUMenuGSettingsHelp());
     menuGame->AppendSeparator();
-    menuGame->Append(wxID_EXIT);
+    menuGame->Append(wxID_EXIT,lang.getUMenuGQuit(),lang.getUMenuGQuitHelp());
     wxMenu *menuBrett = new wxMenu;
-    menuBrett->Append( ID_Rotate ,"&Rotate");
-    menuBrett->Append( ID_Set_Up ,"&Set Up");
-    menuBrett->Append( ID_NewW ,"&New White");
-    menuBrett->Append( ID_NewB ,"&New Black");
+    menuBrett->Append( ID_Rotate ,lang.getUMenuBRotate(),lang.getUMenuBRotateHelp());
+    menuBrett->Append( ID_Set_Up ,lang.getUMenuBSetup(),lang.getUMenuBSetupHelp());
+    menuBrett->Append( ID_NewW ,lang.getUMenuBNewW(),lang.getUMenuBNewWHelp());
+    menuBrett->Append( ID_NewB ,lang.getUMenuBNewB(),lang.getUMenuBNewBHelp());
     wxMenu *menuDataB = new wxMenu;
-    menuDataB->Append( ID_DataB, "&Open");
-    menuDataB->Append( ID_DBStellg, "&Stellung");
+    menuDataB->Append( ID_DataB, lang.getUMenuDOpen(),lang.getUMenuDOpenHelp());
+    menuDataB->Append( ID_DBStellg, lang.getUMenuDStell(),lang.getUMenuDStellHelp());
     wxMenu *menuOnline = new wxMenu;
-    menuOnline->Append( ID_Retrieve, "&Retrieve");
-    menuOnline->Append( ID_Send, "&Send");
+    menuOnline->Append( ID_Retrieve, lang.getUMenuORetrieve(),lang.getUMenuORetrieveHelp());
+    menuOnline->Append( ID_Send, lang.getUMenuOSend(),lang.getUMenuOSendHelp());
+    menuOnline->Append( ID_Friends, lang.getUMenuOFriends(),lang.getUMenuOFriendsHelp());
     wxMenu *menuHelp = new wxMenu;
-    menuHelp->Append(ID_Hilfe,"&Online Help");
-    menuHelp->Append(wxID_ABOUT,"&About");
+    menuHelp->Append(ID_Hilfe,lang.getUMenuHOnline(),lang.getUMenuHOnlineHelp());
+    menuHelp->Append(wxID_ABOUT,lang.getUMenuHAbout(),lang.getUMenuHAboutHelp());
     wxMenuBar *menuBar = new wxMenuBar;
-    menuBar->Append( menuGame, "&Game" );
-    menuBar->Append( menuEngine, "&Engine" );
-    menuBar->Append( menuBrett, "&Board" );
-    menuBar->Append( menuDataB, "&Database" );
-    menuBar->Append( menuOnline, "&Online" );
-    menuBar->Append( menuHelp, "&Help" );
+    menuBar->Append( menuGame, lang.getMenuGame() );
+    menuBar->Append( menuEngine, lang.getMenuEngine() );
+    menuBar->Append( menuBrett, lang.getMenuBoard() );
+    menuBar->Append( menuDataB, lang.getMenuDatabase() );
+    menuBar->Append( menuOnline, lang.getMenuOnline());
+    menuBar->Append( menuHelp, lang.getMenuHelp());
     SetMenuBar( menuBar );
     this->CreateStatusBar();
     // Panel Setup
     textctrl = new wxTextCtrl(this, TEXT_Main, "Hi!");
-   // wxSize screen = this->GetSize();
-   /* textctrl->SetSize(screen.GetWidth()-10,50);
-    wxPoint textpos;
-    textpos.x=5;
-    textpos.y=screen.GetHeight()-110;
-    textctrl->SetPosition(textpos);*/
-    schbr= new Schachbrett(this,wxT("/home/hans/CLionProjects/MichouChessGuiwxW/SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
-    /*wxPoint brettpos;
-    brettpos.x=20;
-    brettpos.y=20;*/
-    //schbr->SetSize(screen.GetHeight()-150,screen.GetHeight()-150);
-    //schbr->SetPosition(brettpos);
+    schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
     Bind(wxEVT_SIZE , &MainGui::OnSize, this, wxID_ANY);
 }
 void MainGui::OnExit(wxCommandEvent& event)
@@ -94,8 +89,8 @@ void MainGui::OnExit(wxCommandEvent& event)
 }
 void MainGui::OnAbout(wxCommandEvent& event)
 {
-    wxMessageBox( "This is a wxWidgets' Hello world sample",
-                  "About Hello World", wxOK | wxICON_INFORMATION );
+    wxMessageBox( "Programmer:    Ing. Hans Wornik\n www.wornik.work.solutions",
+                  "About Michou Chess Gui", wxOK | wxICON_INFORMATION );
 }
 void MainGui::OnHello(wxCommandEvent& event)
 {
@@ -182,4 +177,16 @@ void MainGui::OnSize(wxSizeEvent& event) {
     brettpos.y=20;
     schbr->SetSize(screen.GetHeight()-100,screen.GetHeight()-100);
     schbr->SetPosition(brettpos);
+}
+
+void MainGui::OnEset(wxCommandEvent &) {
+
+}
+
+void MainGui::OnFriends(wxCommandEvent &) {
+
+}
+
+void MainGui::OnHide(wxCommandEvent &) {
+
 }

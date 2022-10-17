@@ -15,6 +15,7 @@
 #include <wx/artprov.h>
 #include <map>
 
+#include "Labguage.h"
 #include "Schachbrett.h"
 
 enum
@@ -38,7 +39,10 @@ enum
     ID_DBStellg=17,
     ID_Retrieve=18,
     ID_Send=19,
-    TEXT_Main=20
+    TEXT_Main=20,
+    ID_ESet=21,
+    ID_Friends=22,
+    ID_Hide=23
 };
 
 class MainGui : public wxFrame
@@ -46,6 +50,7 @@ class MainGui : public wxFrame
     public:
         MainGui(const wxString& title, const wxPoint& pos, const wxSize& size);
     private:
+        Labguage lang;
         Schachbrett *schbr;
         void OnHello(wxCommandEvent& event);
         void OnExit(wxCommandEvent& event);
@@ -88,6 +93,12 @@ class MainGui : public wxFrame
 
     void OnSize(wxSizeEvent& event);
     wxTextCtrl *textctrl;
+
+    void OnEset(wxCommandEvent &);
+
+    void OnFriends(wxCommandEvent &);
+
+    void OnHide(wxCommandEvent &);
 };
 
 

@@ -12,10 +12,11 @@
 #include <wx/event.h>
 #include <wx/frame.h>
 #include "MainGui.h"
-
+#include "Labguage.h"
 
 class MichouApp : public wxApp
 {
+    Labguage lab;
 public:
     bool OnInit();
 
