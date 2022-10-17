@@ -36,7 +36,9 @@ wxEND_EVENT_TABLE()
 MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
         : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
-    this->SetBackgroundColour(this->GetBackgroundColour());
+#if !UNIX
+    this->SetBackgroundColour(GetSysColor(4));
+#endif
     wxMenu *menuEngine = new wxMenu;
     menuEngine->Append(ID_Hello, lang.getUMenuEload(),  lang.getUMenuEloadHelp());
     menuEngine->Append(ID_Analyze, lang.getUMenuEAnalyze(),lang.getUMenuEAnalyzeHelp());
