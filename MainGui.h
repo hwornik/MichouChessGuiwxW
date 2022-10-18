@@ -101,6 +101,10 @@ class MainGui : public wxFrame
     void OnHide(wxCommandEvent &);
 
     void OnCHClr(wxSysColourChangedEvent&);
+
+    void RightSideBook();
+
+    void RightSideDataB();
 };
 
 

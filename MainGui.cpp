@@ -92,6 +92,8 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     Bind(wxEVT_SIZE , &MainGui::OnSize, this, wxID_ANY);
     Bind(wxEVT_SYS_COLOUR_CHANGED , &MainGui::OnCHClr, this, wxID_ANY);
 }
+
+
 void MainGui::OnExit(wxCommandEvent& event)
 {
     Close( true );
@@ -223,4 +225,12 @@ void MainGui::OnCHClr(wxSysColourChangedEvent& ) {
         schbr->SetSize(screen.GetHeight()-100,screen.GetHeight()-100);
         schbr->SetPosition(brettpos);
         }
+}
+
+void MainGui::RightSideBook() {
+
+}
+
+void MainGui::RightSideDataB() {
+
 }
