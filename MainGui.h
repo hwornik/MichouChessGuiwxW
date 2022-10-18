@@ -99,6 +99,8 @@ class MainGui : public wxFrame
     void OnFriends(wxCommandEvent &);
 
     void OnHide(wxCommandEvent &);
+
+    void OnCHClr(wxSysColourChangedEvent&);
 };
 
 

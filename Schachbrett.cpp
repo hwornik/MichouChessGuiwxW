@@ -42,7 +42,6 @@ END_EVENT_TABLE()
 Schachbrett::Schachbrett(wxFrame* parent, wxString file, wxBitmapType format) :
         wxPanel(parent)
 {
-    wxInitAllImageHandlers();
     // load the file... ideally add a check to see if loading was successful
     image.LoadFile(file, format);
     w = -1;

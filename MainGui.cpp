@@ -39,6 +39,7 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
 #if TARGET_OS_WINDOWS
     this->SetBackgroundColour(GetSysColor(4));
 #endif
+    wxInitAllImageHandlers();
     wxMenu *menuEngine = new wxMenu;
     menuEngine->Append(ID_Hello, lang.getUMenuEload(),  lang.getUMenuEloadHelp());
     menuEngine->Append(ID_Analyze, lang.getUMenuEAnalyze(),lang.getUMenuEAnalyzeHelp());
@@ -83,8 +84,13 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     // Panel Setup
     textctrl = new wxTextCtrl(this, TEXT_Main, "Hi!");
     textctrl->SetEditable(false);
-    schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
+    wxSystemAppearance *sysapp;
+    if(sysapp->IsDark())
+        schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettdark.png"), wxBITMAP_TYPE_PNG);
+    else
+        schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
     Bind(wxEVT_SIZE , &MainGui::OnSize, this, wxID_ANY);
+    Bind(wxEVT_SYS_COLOUR_CHANGED , &MainGui::OnCHClr, this, wxID_ANY);
 }
 void MainGui::OnExit(wxCommandEvent& event)
 {
@@ -192,4 +198,29 @@ void MainGui::OnFriends(wxCommandEvent &) {
 
 void MainGui::OnHide(wxCommandEvent &) {
 
+}
+
+void MainGui::OnCHClr(wxSysColourChangedEvent& ) {
+    wxSystemAppearance *sysapp;
+    if(sysapp->IsDark()){
+        delete schbr;
+        schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettdark.png"), wxBITMAP_TYPE_PNG);
+        wxSize screen = this->GetClientSize();
+        wxPoint brettpos;
+        brettpos.x=20;
+        brettpos.y=20;
+        schbr->SetSize(screen.GetHeight()-100,screen.GetHeight()-100);
+        schbr->SetPosition(brettpos);
+
+    }
+    else {
+        delete schbr;
+        schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
+        wxSize screen = this->GetClientSize();
+        wxPoint brettpos;
+        brettpos.x=20;
+        brettpos.y=20;
+        schbr->SetSize(screen.GetHeight()-100,screen.GetHeight()-100);
+        schbr->SetPosition(brettpos);
+        }
 }
