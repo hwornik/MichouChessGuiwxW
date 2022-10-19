@@ -36,9 +36,8 @@ wxEND_EVENT_TABLE()
 MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
         : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
-#if TARGET_OS_WINDOWS
-    this->SetBackgroundColour(GetSysColor(4));
-#endif
+    if(TARGET_IS_NT351_OR_WIN95_OR_LATER)
+        this->SetBackgroundColour(GetSysColor(4));
     wxInitAllImageHandlers();
     wxMenu *menuEngine = new wxMenu;
     menuEngine->Append(ID_Hello, lang.getUMenuEload(),  lang.getUMenuEloadHelp());
@@ -84,11 +83,19 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     // Panel Setup
     textctrl = new wxTextCtrl(this, TEXT_Main, "Hi!");
     textctrl->SetEditable(false);
-    wxSystemAppearance *sysapp;
-    if(sysapp->IsDark())
-        schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettdark.png"), wxBITMAP_TYPE_PNG);
-    else
-        schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
+    sysapp = new wxSystemSettings();
+    if(sysapp->GetAppearance().IsDark()) {
+        if(TARGET_IS_NT351_OR_WIN95_OR_LATER)
+            schbr = new Schachbrett(this, wxT("C:\\Users\\hworn\\CLionProjects\\MichouChessGuiwxW\\SchachfigurenFinal\\Schachbrettdark.png"), wxBITMAP_TYPE_PNG);
+        else
+            schbr = new Schachbrett(this, wxT("../SchachfigurenFinal/Schachbrettdark.png"), wxBITMAP_TYPE_PNG);
+
+    } else {
+        if(TARGET_IS_NT351_OR_WIN95_OR_LATER)
+            schbr = new Schachbrett(this, wxT("C:\\Users\\hworn\\CLionProjects\\MichouChessGuiwxW\\SchachfigurenFinal\\Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
+   else
+            schbr = new Schachbrett(this, wxT("../SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
+    }
     Bind(wxEVT_SIZE , &MainGui::OnSize, this, wxID_ANY);
     Bind(wxEVT_SYS_COLOUR_CHANGED , &MainGui::OnCHClr, this, wxID_ANY);
 }
@@ -204,10 +211,12 @@ void MainGui::OnHide(wxCommandEvent &) {
 }
 
 void MainGui::OnCHClr(wxSysColourChangedEvent& ) {
-    wxSystemAppearance *sysapp;
-    if(sysapp->IsDark()){
+    if(sysapp->GetAppearance().IsDark()){
         delete schbr;
-        schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettdark.png"), wxBITMAP_TYPE_PNG);
+        if(TARGET_IS_NT351_OR_WIN95_OR_LATER)
+            schbr = new Schachbrett(this, wxT("C:\\Users\\hworn\\CLionProjects\\MichouChessGuiwxW\\SchachfigurenFinal\\Schachbrettdark.png"), wxBITMAP_TYPE_PNG);
+        else
+            schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettdark.png"), wxBITMAP_TYPE_PNG);
         wxSize screen = this->GetClientSize();
         wxPoint brettpos;
         brettpos.x=20;
@@ -218,7 +227,10 @@ void MainGui::OnCHClr(wxSysColourChangedEvent& ) {
     }
     else {
         delete schbr;
-        schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
+        if(TARGET_IS_NT351_OR_WIN95_OR_LATER)
+            schbr = new Schachbrett(this, wxT("C:\\Users\\hworn\\CLionProjects\\MichouChessGuiwxW\\SchachfigurenFinal\\Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
+        else
+             schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
         wxSize screen = this->GetClientSize();
         wxPoint brettpos;
         brettpos.x=20;

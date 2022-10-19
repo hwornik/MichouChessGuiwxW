@@ -49,6 +49,7 @@ class MainGui : public wxFrame
     {
     public:
         MainGui(const wxString& title, const wxPoint& pos, const wxSize& size);
+        wxSystemSettings *sysapp;
     private:
         Labguage lang;
         Schachbrett *schbr;
