@@ -188,6 +188,7 @@ void MainGui::OnSize(wxSizeEvent& event) {
     brettpos.y=20;
     schbr->SetSize(screen.GetHeight()-100,screen.GetHeight()-100);
     schbr->SetPosition(brettpos);
+
 }
 
 void MainGui::OnEset(wxCommandEvent &) {
@@ -232,5 +233,13 @@ void MainGui::RightSideBook() {
 }
 
 void MainGui::RightSideDataB() {
+
+}
+
+void MainGui::RightSideOnline() {
+
+}
+
+void MainGui::changeRightSideView(int) {
 
 }

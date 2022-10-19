@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 set(CMAKE_CXX_STANDARD 17)
 set( COMPILE_DEFINITIONS )
-
+find_package(TBB REQUIRED PATHS ${ONEAPI_ROOT})
 if(UNIX)
 
     if(APPLE)
@@ -21,6 +21,9 @@ if(UNIX)
         add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${SOURCES})
         target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
         set_target_properties(${PROJECT_NAME} PROPERTIES FOLDER "HelloWorlds")
+        target_link_options(${PROJECT_NAME}  BEFORE
+                PUBLIC -L/opt/intel/oneapi/tbb/latest/lib/pkgconfig/../..//lib
+                PUBLIC -ltbb)
     else()
         add_executable(MichouChessGuiwxW main.cpp MainGui.cpp MainGui.h MichouApp.cpp MichouApp.h Labguage.cpp Labguage.h Schachbrett.cpp Schachbrett.h)
         target_include_directories( MichouChessGuiwxW

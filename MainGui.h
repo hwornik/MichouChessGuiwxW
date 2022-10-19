@@ -105,6 +105,10 @@ class MainGui : public wxFrame
     void RightSideBook();
 
     void RightSideDataB();
+
+    void RightSideOnline();
+
+    void changeRightSideView(int vw);
 };
 
 
