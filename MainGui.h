@@ -14,10 +14,11 @@
 #include <wx/event.h>
 #include <wx/artprov.h>
 #include <map>
-
+#include <wx/settings.h>
+#include <wx/systhemectrl.h>
+#include <wx/treectrl.h>
 #include "Labguage.h"
 #include "Schachbrett.h"
-
 enum
 {
     ID_Hello = 1,

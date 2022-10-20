@@ -56,10 +56,12 @@ else()
     #add_compile_options(--with-osx_cocoa --with-macosx-version-min=10.7 --with-macosx-sdk=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk --prefix="$(pwd)")
     #   )
     find_package(wxWidgets CONFIG REQUIRED)
-    target_link_libraries(MichouChessGuiwxW PRIVATE wx::core wx::base )
+    target_link_libraries(${PROJECT_NAME} PRIVATE wx::core wx::base )
+    #target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES})
     target_compile_options(MichouChessGuiwxW
             BEFORE
             PUBLIC -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
+            #PUBLIC -static
             #PUBLIC -I/usr/local/lib64/wx/include/gtk3-unicode-3.2
             #PUBLIC -D__WXMSW__
             #PUBLIC -D_FILE_OFFSET_BITS=64
@@ -69,9 +71,12 @@ else()
             )
     target_include_directories( MichouChessGuiwxW
             PUBLIC "C:/vcpkg/installed/x64-windows/include"
-            PUBLIC "C:/vcpkg/installed/x64-windows/debug/bin")
+            PUBLIC "C:/vcpkg/installed/x64-windows/debug/bin"
+            PUBLIC "C:/vcpkg/packages/opengl_x64-windows"
+            PUBLIC "C:/Program Files (x86)/Windows Kits/10/Lib/10.0.19041.0/um/x64")
     target_link_options(MichouChessGuiwxW
             BEFORE
+            PUBLIC -static
             PUBLIC /SUBSYSTEM:WINDOWS)
 
 endif(UNIX)

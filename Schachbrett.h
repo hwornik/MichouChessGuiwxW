@@ -6,7 +6,7 @@
 #define MICHOUCHESSGUIWXW_SCHACHBRETT_H
 #include <wx/wx.h>
 #include <wx/sizer.h>
-
+#include <wx/systhemectrl.h>
 class Schachbrett : public wxPanel
 {
     wxImage image;

@@ -6,6 +6,7 @@
 
 
 
+
 wxBEGIN_EVENT_TABLE(MainGui, wxFrame)
                 EVT_MENU(ID_Hello,   MainGui::OnHello)
                 EVT_MENU(wxID_EXIT,  MainGui::OnExit)
@@ -36,9 +37,7 @@ wxEND_EVENT_TABLE()
 MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
         : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
-#ifdef _WIN32S
-       this->SetBackgroundColour(GetSysColor(4));
-#endif
+
     wxInitAllImageHandlers();
     wxMenu *menuEngine = new wxMenu;
     menuEngine->Append(ID_Hello, lang.getUMenuEload(),  lang.getUMenuEloadHelp());
@@ -82,6 +81,7 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     SetMenuBar( menuBar );
     this->CreateStatusBar();
     // Panel Setup
+
     textctrl = new wxTextCtrl(this, TEXT_Main, "Hi!");
     textctrl->SetEditable(false);
     sysapp = new wxSystemSettings();
@@ -93,11 +93,15 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
 #endif
     } else {
 #ifdef _WIN32
+
+            this->SetBackgroundColour(wxSystemSettings::GetColour	(	wxSYS_COLOUR_MENU    	));
             schbr = new Schachbrett(this, wxT("C:\\Users\\hworn\\CLionProjects\\MichouChessGuiwxW\\SchachfigurenFinal\\Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
 #else
             schbr = new Schachbrett(this, wxT("../SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
 #endif
     }
+
+
     Bind(wxEVT_SIZE , &MainGui::OnSize, this, wxID_ANY);
     Bind(wxEVT_SYS_COLOUR_CHANGED , &MainGui::OnCHClr, this, wxID_ANY);
 }
@@ -186,6 +190,7 @@ void MainGui::OnRetrieve(wxCommandEvent &) {
 }
 
 void MainGui::OnSize(wxSizeEvent& event) {
+
     wxSize screen = this->GetClientSize();
     textctrl->SetSize(screen.GetWidth()-10,50);
     wxPoint textpos;
@@ -226,13 +231,14 @@ void MainGui::OnCHClr(wxSysColourChangedEvent& ) {
         brettpos.y=20;
         schbr->SetSize(screen.GetHeight()-100,screen.GetHeight()-100);
         schbr->SetPosition(brettpos);
-
+        schbr->Show();
     }
     else {
         delete schbr;
 #ifdef _WIN32S
             schbr = new Schachbrett(this, wxT("C:\\Users\\hworn\\CLionProjects\\MichouChessGuiwxW\\SchachfigurenFinal\\Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
 #else
+        this->SetBackgroundColour(wxSystemSettings::GetColour	(	wxSYS_COLOUR_MENU    	));
              schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
 #endif
          wxSize screen = this->GetClientSize();
@@ -241,7 +247,9 @@ void MainGui::OnCHClr(wxSysColourChangedEvent& ) {
         brettpos.y=20;
         schbr->SetSize(screen.GetHeight()-100,screen.GetHeight()-100);
         schbr->SetPosition(brettpos);
+        schbr->Show();
         }
+
 }
 
 void MainGui::RightSideBook() {

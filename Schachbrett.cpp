@@ -91,6 +91,7 @@ void Schachbrett::render(wxDC&  dc)
         resized = wxBitmap( image.Scale( neww, newh /*, wxIMAGE_QUALITY_HIGH*/ ) );
         w = neww;
         h = newh;
+
         dc.DrawBitmap( resized, 0, 0, false );
     }else{
         dc.DrawBitmap( resized, 0, 0, false );
