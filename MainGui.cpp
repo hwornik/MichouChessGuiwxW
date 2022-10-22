@@ -37,6 +37,9 @@ wxEND_EVENT_TABLE()
 MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
         : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
+    //HWND hwd=wxWindow::GetHandle();
+    //SetWindowTheme(hwd, L" ", L" ");
+    //SetWindowTheme(hwd, L"Explorer", NULL);
 
     wxInitAllImageHandlers();
     wxMenu *menuEngine = new wxMenu;
@@ -79,6 +82,7 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     menuBar->Append( menuOnline, lang.getMenuOnline());
     menuBar->Append( menuHelp, lang.getMenuHelp());
     SetMenuBar( menuBar );
+
     this->CreateStatusBar();
     // Panel Setup
 

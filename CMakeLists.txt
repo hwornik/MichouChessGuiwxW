@@ -49,7 +49,7 @@ if(UNIX)
                 PUBLIC -lwx_baseu-3.2)
     endif(APPLE)
 else()
-    add_executable(MichouChessGuiwxW main.cpp MainGui.cpp MainGui.h MichouApp.cpp MichouApp.h Labguage.cpp Labguage.h Schachbrett.cpp Schachbrett.h)
+    add_executable(MichouChessGuiwxW main.cpp MainGui.cpp MainGui.h MichouApp.cpp MichouApp.h Labguage.cpp Labguage.h Schachbrett.cpp Schachbrett.h )
 
     set(wxWidgets_DIR "C:/vcpkg/installed/x64-windows/share/wxwidgets")
     set(CMAKE_PREFIX_PATH $(CMAKE_PREFIX_PATH);C:/vcpkg/installed/x64-windows/share/unofficial-nanosvg)
@@ -61,7 +61,7 @@ else()
     target_compile_options(MichouChessGuiwxW
             BEFORE
             PUBLIC -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake
-            #PUBLIC -static
+            PUBLIC "-"
             #PUBLIC -I/usr/local/lib64/wx/include/gtk3-unicode-3.2
             #PUBLIC -D__WXMSW__
             #PUBLIC -D_FILE_OFFSET_BITS=64
@@ -76,7 +76,8 @@ else()
             PUBLIC "C:/Program Files (x86)/Windows Kits/10/Lib/10.0.19041.0/um/x64")
     target_link_options(MichouChessGuiwxW
             BEFORE
-            PUBLIC -static
+
+            #PUBLIC -static)
             PUBLIC /SUBSYSTEM:WINDOWS)
 
 endif(UNIX)
