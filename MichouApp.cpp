@@ -3,7 +3,7 @@
 //
 
 #include "MichouApp.h"
-#include <windows.h>
+
 //#include <microsoft.ui.xaml.window.h>
 
 bool MichouApp::OnInit()

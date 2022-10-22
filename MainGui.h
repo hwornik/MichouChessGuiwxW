@@ -19,7 +19,7 @@
 #include <wx/treectrl.h>
 #include "Labguage.h"
 #include "Schachbrett.h"
-#include <Uxtheme.h>
+
 
 
 #include <climits>
@@ -28,17 +28,7 @@
 
 #define WIN32_LEAN_AND_MEAN
 #define NOMINMAX
-#include <Windows.h>
-#include <CommCtrl.h>
-#include <Uxtheme.h>
-#include <WindowsX.h>
-#include <Vssym32.h>
-#define IDI_WIN32DARKMODE               1
-#define IDC_WIN32DARKMODE               1
-#define IDM_EXIT                        1
-#define IDM_ABOUT                       2
-#define IDD_ABOUTBOX                    1
-#define IDC_STATIC                      -1
+
 
 // Next default values for new objects
 //
@@ -52,7 +42,7 @@
 #endif
 #endif
 
-#include <SDKDDKVer.h>
+
 
 
 
