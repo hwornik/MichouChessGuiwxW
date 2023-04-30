@@ -18,17 +18,16 @@ BEGIN_EVENT_TABLE(Schachbrett, wxPanel)
  EVT_KEY_DOWN(wxImagePanel::keyPressed)
  EVT_KEY_UP(wxImagePanel::keyReleased)
  EVT_MOUSEWHEEL(wxImagePanel::mouseWheelMoved)
- */
+*/
 
 // catch paint events
-                EVT_PAINT(Schachbrett::paintEvent)
+               EVT_PAINT(Schachbrett::paintEvent)
 //Size event
                 EVT_SIZE(Schachbrett::OnSize)
 END_EVENT_TABLE()
-
+/*
 
 // some useful events
-/*
  void wxImagePanel::mouseMoved(wxMouseEvent& event) {}
  void wxImagePanel::mouseDown(wxMouseEvent& event) {}
  void wxImagePanel::mouseWheelMoved(wxMouseEvent& event) {}

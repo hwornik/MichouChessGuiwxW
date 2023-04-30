@@ -87,7 +87,13 @@ class MainGui : public wxFrame
         void OnAbout(wxCommandEvent& event);
         void OnBrett(wxCommandEvent& event);
         void OnDataB(wxCommandEvent& event);
-
+        wxMenuBar *menuBar;
+        wxMenu *menuEngine;
+        wxMenu *menuGame;
+        wxMenu *menuBrett;
+        wxMenu *menuDataB;
+        wxMenu *menuOnline;
+        wxMenu *menuHelp;
 
         wxDECLARE_EVENT_TABLE();
 

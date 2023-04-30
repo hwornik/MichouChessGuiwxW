@@ -5,6 +5,7 @@
 #ifndef MICHOUCHESSGUIWXW_LABGUAGE_H
 #define MICHOUCHESSGUIWXW_LABGUAGE_H
 #include <wx/string.h>
+#include <wx/wx.h>
 
 class Labguage {
     int lang;

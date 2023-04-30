@@ -42,13 +42,13 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     //SetWindowTheme(hwd, L"Explorer", NULL);
 
     wxInitAllImageHandlers();
-    wxMenu *menuEngine = new wxMenu;
+    /*menuEngine = new wxMenu();
     menuEngine->Append(ID_Hello, lang.getUMenuEload(),  lang.getUMenuEloadHelp());
     menuEngine->Append(ID_Analyze, lang.getUMenuEAnalyze(),lang.getUMenuEAnalyzeHelp());
     menuEngine->Append(ID_Stop, lang.getUMenuEStop(),lang.getUMenuEStopHelp());
     menuEngine->Append(ID_ESet, lang.getUMenuESett(),lang.getUMenuESettHelp());
 
-    wxMenu *menuGame = new wxMenu;
+    menuGame = new wxMenu();
     menuGame->Append(ID_Game,lang.getUMenuGNew(),lang.getUMenuGNewHelp());
     menuGame->Append(ID_Restart,lang.getUMenuGRestart(),lang.getUMenuGRestartHelp());
     menuGame->Append(ID_Nstart,lang.getUMenuGStart(), lang.getUMenuGStartHelp());
@@ -59,31 +59,31 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
     menuGame->Append(wxID_PREFERENCES,lang.getUMenuGSettings(),lang.getUMenuGSettingsHelp());
     menuGame->AppendSeparator();
     menuGame->Append(wxID_EXIT,lang.getUMenuGQuit(),lang.getUMenuGQuitHelp());
-    wxMenu *menuBrett = new wxMenu;
+    menuBrett = new wxMenu();
     menuBrett->Append( ID_Rotate ,lang.getUMenuBRotate(),lang.getUMenuBRotateHelp());
     menuBrett->Append( ID_Set_Up ,lang.getUMenuBSetup(),lang.getUMenuBSetupHelp());
     menuBrett->Append( ID_NewW ,lang.getUMenuBNewW(),lang.getUMenuBNewWHelp());
     menuBrett->Append( ID_NewB ,lang.getUMenuBNewB(),lang.getUMenuBNewBHelp());
-    wxMenu *menuDataB = new wxMenu;
+    menuDataB = new wxMenu;
     menuDataB->Append( ID_DataB, lang.getUMenuDOpen(),lang.getUMenuDOpenHelp());
     menuDataB->Append( ID_DBStellg, lang.getUMenuDStell(),lang.getUMenuDStellHelp());
-    wxMenu *menuOnline = new wxMenu;
+    menuOnline = new wxMenu();
     menuOnline->Append( ID_Retrieve, lang.getUMenuORetrieve(),lang.getUMenuORetrieveHelp());
     menuOnline->Append( ID_Send, lang.getUMenuOSend(),lang.getUMenuOSendHelp());
     menuOnline->Append( ID_Friends, lang.getUMenuOFriends(),lang.getUMenuOFriendsHelp());
-    wxMenu *menuHelp = new wxMenu;
+    menuHelp = new wxMenu();
     menuHelp->Append(ID_Hilfe,lang.getUMenuHOnline(),lang.getUMenuHOnlineHelp());
     menuHelp->Append(wxID_ABOUT,lang.getUMenuHAbout(),lang.getUMenuHAboutHelp());
-    wxMenuBar *menuBar = new wxMenuBar;
+    menuBar = new wxMenuBar();
     menuBar->Append( menuGame, lang.getMenuGame() );
     menuBar->Append( menuEngine, lang.getMenuEngine() );
     menuBar->Append( menuBrett, lang.getMenuBoard() );
     menuBar->Append( menuDataB, lang.getMenuDatabase() );
     menuBar->Append( menuOnline, lang.getMenuOnline());
-    menuBar->Append( menuHelp, lang.getMenuHelp());
-    SetMenuBar( menuBar );
+    SetMenuBar( menuBar );*/
 
     this->CreateStatusBar();
+    PushStatusText("Hallo");
     // Panel Setup
 
     textctrl = new wxTextCtrl(this, TEXT_Main, "Hi!");
@@ -93,7 +93,7 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
 #ifdef _WIN32
             schbr = new Schachbrett(this, wxT("C:\\Users\\hworn\\CLionProjects\\MichouChessGuiwxW\\SchachfigurenFinal\\Schachbrettdark.png"), wxBITMAP_TYPE_PNG);
 #else
-            schbr = new Schachbrett(this, wxT("../SchachfigurenFinal/Schachbrettdark.png"), wxBITMAP_TYPE_PNG);
+            schbr = new Schachbrett(this, wxT("./SchachfigurenFinal/Schachbrettdark.png"), wxBITMAP_TYPE_PNG);
 #endif
     } else {
 #ifdef _WIN32
@@ -101,10 +101,9 @@ MainGui::MainGui(const wxString& title, const wxPoint& pos, const wxSize& size)
             this->SetBackgroundColour(wxSystemSettings::GetColour	(	wxSYS_COLOUR_MENU    	));
             schbr = new Schachbrett(this, wxT("C:\\Users\\hworn\\CLionProjects\\MichouChessGuiwxW\\SchachfigurenFinal\\Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
 #else
-            schbr = new Schachbrett(this, wxT("../SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
+            schbr = new Schachbrett(this, wxT("./SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
 #endif
     }
-
 
     Bind(wxEVT_SIZE , &MainGui::OnSize, this, wxID_ANY);
     Bind(wxEVT_SYS_COLOUR_CHANGED , &MainGui::OnCHClr, this, wxID_ANY);
@@ -206,7 +205,7 @@ void MainGui::OnSize(wxSizeEvent& event) {
     brettpos.y=20;
     schbr->SetSize(screen.GetHeight()-100,screen.GetHeight()-100);
     schbr->SetPosition(brettpos);
-
+    schbr->Show();
 }
 
 void MainGui::OnEset(wxCommandEvent &) {
@@ -227,7 +226,7 @@ void MainGui::OnCHClr(wxSysColourChangedEvent& ) {
 #ifdef _WIN32
             schbr = new Schachbrett(this, wxT("C:\\Users\\hworn\\CLionProjects\\MichouChessGuiwxW\\SchachfigurenFinal\\Schachbrettdark.png"), wxBITMAP_TYPE_PNG);
 #else
-            schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettdark.png"), wxBITMAP_TYPE_PNG);
+            schbr= new Schachbrett(this,wxT("./SchachfigurenFinal/Schachbrettdark.png"), wxBITMAP_TYPE_PNG);
 #endif
             wxSize screen = this->GetClientSize();
         wxPoint brettpos;
@@ -243,7 +242,7 @@ void MainGui::OnCHClr(wxSysColourChangedEvent& ) {
             schbr = new Schachbrett(this, wxT("C:\\Users\\hworn\\CLionProjects\\MichouChessGuiwxW\\SchachfigurenFinal\\Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
 #else
         this->SetBackgroundColour(wxSystemSettings::GetColour	(	wxSYS_COLOUR_MENU    	));
-             schbr= new Schachbrett(this,wxT("../SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
+             schbr= new Schachbrett(this,wxT("./SchachfigurenFinal/Schachbrettblue.jpg"), wxBITMAP_TYPE_JPEG);
 #endif
          wxSize screen = this->GetClientSize();
         wxPoint brettpos;
