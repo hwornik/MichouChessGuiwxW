@@ -1,3 +1,0 @@
-/Users/hans/git/MichouChessGuiwxW/CMakeFiles/MichouChessGuiwxW.dir
-/Users/hans/git/MichouChessGuiwxW/CMakeFiles/edit_cache.dir
-/Users/hans/git/MichouChessGuiwxW/CMakeFiles/rebuild_cache.dir
